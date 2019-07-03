@@ -1,10 +1,6 @@
-const SuggestionsReducer = (state = [], action) => {
-    switch (action.type) {
-      case 'SET_SUGGESTIONS':
-        return action.payload;
-      default:
-        return state;
-    }
+const SuggestionsReducer = (state = ['burrito'], action) => {
+    if( action.type == 'SET_SUGGESTIONS'){return action.payload;}
+    return state
   };
   
   // user will be on the redux state at:

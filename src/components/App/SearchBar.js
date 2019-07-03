@@ -3,6 +3,7 @@ import './App.css';
 import './autosuggest/suggestion.css'
 import Autosuggest from 'react-autosuggest';
 import Axios from 'axios'; 
+import {connect} from 'react-redux'
  
 class SearchBar extends React.Component {
   state = {
@@ -23,13 +24,6 @@ class SearchBar extends React.Component {
   })
  }
  
-  onChange = (event, { newValue }) => {
-    this.setState({
-      value: newValue
-    });
-    console.log(this.state.value)
-    this.getData()
-  };
  
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
@@ -53,6 +47,14 @@ class SearchBar extends React.Component {
   );
 };
  
+onClick= ()=>{
+  this.props.dispatch({
+    type: 'SET_SUGGESTIONS',
+    payload: [this.state.suggestions]
+  })  
+  console.log(this.props.reduxState.Suggestions)
+}
+
 onSuggestionsClearRequested = () =>{this.Suggestions = []}
 
 getSuggestionValue = suggestion => suggestion.card_name;
@@ -68,15 +70,21 @@ renderSuggestion = suggestion => (
     const inputProps = {
       placeholder: 'Rummage collection',
       value: this.state.value,
-      onChange: this.onChange,
-    };
+      onChange: (event, { newValue }) => {
+        this.setState({
+          value: newValue
+        });
+        console.log(this.state.value)
+        this.getData()
+    }}
  
     // Finally, render it!
     return (
       <div className = 'App'> 
         
-          {/* {JSON.stringify(this.state)} */}
-          <button>Search</button>
+          {JSON.stringify(this.state)}
+
+          <button onClick = {this.onClick}>Search</button>
           <Autosuggest
             suggestions={this.state.suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -90,5 +98,8 @@ renderSuggestion = suggestion => (
     );
   }
 }
+const mapStateToProps = reduxState => ({
+reduxState: reduxState
+});
 
-export default SearchBar;
+export default connect(mapStateToProps)(SearchBar);
