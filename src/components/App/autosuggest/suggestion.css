@@ -1,0 +1,17 @@
+.searchResults{
+    width: 50px;
+    background-color: blue;
+}
+ 
+li{
+    background-color: orange;
+    width: 125px;
+    text-align: center;
+    font-size: 12px;
+    margin: 0 auto;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+} 

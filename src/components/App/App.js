@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
+import Autosuggest from 'react-autosuggest';
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
+  Link
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';
@@ -13,9 +15,14 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import AboutPage from '../Pages/AboutPage';
+import UserPage from '../Pages/UserPage';
+import InfoPage from '../Pages/InfoPage';
+import SearchCollection from '../Pages/searchCollection';
+import viewSignleOrder from '../Pages/viewSignleOrder';
+import Checkout from '../Pages/checkout';
+import ViewOrders from '../Pages/viewOrders'
+import AccountDetails from '../Pages/accountDetails'
 
 import './App.css';
 
@@ -27,8 +34,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className = 'App'>
           <Nav />
+          
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -55,11 +63,20 @@ class App extends Component {
               path="/info"
               component={InfoPage}
             />
+            <Route path="/searchcollection" component={SearchCollection} />
+            <Route path="/accountdetails" component={AccountDetails} />
+            <Route path="/vieworders" component={ViewOrders} />
+            <Route path="/Checkout" component={Checkout} />
+            <Route path="/viewsignleorder" component={viewSignleOrder} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
         </div>
+
+
+
+
       </Router>
   )}
 }
