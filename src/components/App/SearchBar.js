@@ -88,7 +88,7 @@ renderSuggestion = suggestion => (
     return (
       <div className = 'App'> 
         
-          {JSON.stringify(this.props.state.SuggestionsReducer)}
+          {/* {JSON.stringify(this.props.state.SuggestionsReducer)} */}
 
 
 

@@ -1,4 +1,4 @@
-const SuggestionsReducer = (state = ['burrito'], action) => {
+const SuggestionsReducer = (state = [], action) => {
     if( action.type === 'SET_SUGGESTIONS'){return action.payload;}
     return state
   };

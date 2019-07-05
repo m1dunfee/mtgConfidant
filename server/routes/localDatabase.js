@@ -61,7 +61,16 @@ router.delete('/card_delete',(req,res)=>{
         console.log('error delete',error)
         res.sendStatus(500)
     })
-    
+})
+
+router.put('/card_add',(req,res)=>{
+    pool.query(`insert into "physical_cards" ("card_name","set") values ($1,$2);`,[req.body.payload1,req.body.payload2])
+    .then(()=>{
+        res.sendStatus(201)
+    }).catch((error)=>{
+        console.log('error in card_add',error)
+        res.sendStatus(error)
+    })
 })
 
 

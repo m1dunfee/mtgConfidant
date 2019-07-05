@@ -5,7 +5,9 @@ import axios from 'axios';
 
 class SearchCollection extends Component{
     state = {
-        card: ''
+        card: '',
+        newCardName: '',
+        newCardSet: ''
     }
     
     OnClickSwitch = (method) =>{
@@ -73,8 +75,39 @@ class SearchCollection extends Component{
         })
     }
 
+    createCard =()=>{
+        console.log('create button clicked')
+        axios({
+            method: 'put',
+            url: 'localDB/card_add/',
+            data:{
+                payload1: this.state.newCardName,
+                payload2: this.state.newCardSet
+            }
+        })
+    }
+
+    createCardChangeSet=(event)=>{
+        console.log(event.target.value)
+        this.setState({
+            newCardSet: event.target.value
+        })
+    }
+
+    createCardChangeName=(event)=>{
+        console.log(event.target.value)
+        this.setState({
+            newCardName: event.target.value
+        })
+    }
+
+
     render(){
         return(
+            <div>
+            <input placeholder = "name" onChange={this.createCardChangeName}/>
+            <input placeholder = "set" onChange={this.createCardChangeSet}/>
+            <button onClick={this.createCard}>Add Card</button>
             <table>
                 <tbody>
                 <tr className = 'thead'>
@@ -98,7 +131,9 @@ class SearchCollection extends Component{
                     {this.props.reduxState.SuggestionsReducer.map((card)=>{
                        return ( 
                          <tr key = {card.id}>  
-                            <td key = {card.img_path}>    {JSON.stringify(this.props.EditCard)} </td> 
+                            <td key = {card.img_path}>  
+                              {/* {JSON.stringify(this.props.EditCard)} */}
+                               </td> 
                             <td key = {card.card_name}>    
                             {this.props.user.admin ?
                                 <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update"/>
@@ -120,6 +155,7 @@ class SearchCollection extends Component{
                     })}
                 </tbody>
             </table>
+            </div>
         )
     }
 }
