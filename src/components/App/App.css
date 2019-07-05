@@ -51,3 +51,8 @@ input {
 .App{
     text-align: center;
 }
+
+table{
+    text-align: center;
+    width: 100%;
+}

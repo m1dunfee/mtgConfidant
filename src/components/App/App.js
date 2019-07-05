@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-import Autosuggest from 'react-autosuggest';
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-  Link
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';

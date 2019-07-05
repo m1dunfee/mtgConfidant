@@ -4,6 +4,10 @@ import './autosuggest/suggestion.css'
 import Autosuggest from 'react-autosuggest';
 import Axios from 'axios'; 
 import {connect} from 'react-redux'
+import {
+  HashRouter as Router,
+  Link
+} from 'react-router-dom';
  
 class SearchBar extends React.Component {
   state = {
@@ -12,11 +16,11 @@ class SearchBar extends React.Component {
    };
   
 
- getData = ()=>{
+ getData = (newValue)=>{
   Axios({
     method: 'get',
     url: '/localDB/autoFill',
-    params:{string: this.state.value}
+    params:{string: newValue}
   }).then((response)=>{
     this.setState({
       suggestions: response.data
@@ -38,7 +42,9 @@ class SearchBar extends React.Component {
   };
 
  getSuggestions = (value) => {
+  console.log(value)
   const inputValue = value.trim().toLowerCase();
+  
   const inputLength = inputValue.length;
   console.log('length log',inputLength)
  
@@ -50,9 +56,9 @@ class SearchBar extends React.Component {
 onClick= ()=>{
   this.props.dispatch({
     type: 'SET_SUGGESTIONS',
-    payload: [this.state.suggestions]
+    payload: this.state.suggestions
   })  
-  console.log(this.props.reduxState.Suggestions)
+  console.log(this.props.state.Suggestions)
 }
 
 onSuggestionsClearRequested = () =>{this.Suggestions = []}
@@ -75,16 +81,18 @@ renderSuggestion = suggestion => (
           value: newValue
         });
         console.log(this.state.value)
-        this.getData()
+        this.getData(newValue)
     }}
  
     // Finally, render it!
     return (
       <div className = 'App'> 
         
-          {JSON.stringify(this.state)}
+          {JSON.stringify(this.props.state.SuggestionsReducer)}
 
-          <button onClick = {this.onClick}>Search</button>
+
+
+          <Link to = '/searchcollection'><button onClick = {this.onClick}>Search</button></Link>
           <Autosuggest
             suggestions={this.state.suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -98,8 +106,8 @@ renderSuggestion = suggestion => (
     );
   }
 }
-const mapStateToProps = reduxState => ({
-reduxState: reduxState
+const mapStateToProps = state => ({
+state: state
 });
 
 export default connect(mapStateToProps)(SearchBar);

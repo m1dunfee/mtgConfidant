@@ -13,7 +13,6 @@ const Nav = (props) => (
     <Link to="/searchcollection">
       <h2 className="nav-title">Mtg Confidant</h2>
     </Link>
-    <SearchBar/>
     <div className="nav-right">
 
       <Link className="nav-link" to = "/Checkout">Checkout</Link> 
@@ -34,6 +33,7 @@ const Nav = (props) => (
       <Link className="nav-link" to="/about">
         About
       </Link>
+      <SearchBar/>
     </div>
   </div>
 );

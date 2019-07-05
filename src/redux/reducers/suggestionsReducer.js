@@ -1,5 +1,5 @@
 const SuggestionsReducer = (state = ['burrito'], action) => {
-    if( action.type == 'SET_SUGGESTIONS'){return action.payload;}
+    if( action.type === 'SET_SUGGESTIONS'){return action.payload;}
     return state
   };
   

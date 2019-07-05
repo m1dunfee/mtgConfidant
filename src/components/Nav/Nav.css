@@ -9,6 +9,10 @@
 .nav {
   overflow: hidden;
   background-color: blue;
+  /* position: absolute;
+  top: 0px;
+  WIDTH: 100% */
+  /* right: 0px; */
 }
 
 .nav-link {
