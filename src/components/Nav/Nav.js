@@ -15,7 +15,7 @@ const Nav = (props) => (
     </Link>
     <div className="nav-right">
 
-      <Link className="nav-link" to = "/Checkout">Checkout</Link> 
+      <Link className="nav-link" to = "/Checkout">Cart</Link> 
       <Link className="nav-link" to="/home">
         {/* Show this link if they are logged in or not,
         but call this link 'Home' if they are logged in,

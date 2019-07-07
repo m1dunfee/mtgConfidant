@@ -101,13 +101,30 @@ class SearchCollection extends Component{
         })
     }
 
+    addToCart=(card)=>{
+        console.log('add to cart',card)
+        this.props.dispatch({
+            type: 'CART',
+            payload: [card]
+        })
+    }
+
 
     render(){
         return(
             <div>
-            <input placeholder = "name" onChange={this.createCardChangeName}/>
-            <input placeholder = "set" onChange={this.createCardChangeSet}/>
-            <button onClick={this.createCard}>Add Card</button>
+                {/* {JSON.stringify(this.props.user)} */}
+                {this.props.user.admin ? 
+                <div>
+                <input placeholder = "name" onChange={this.createCardChangeName}/>
+                <input placeholder = "set" onChange={this.createCardChangeSet}/>
+                <button onClick={this.createCard}>Add Card</button>
+                </div>
+                : 
+                []
+                }
+            
+
             <table>
                 <tbody>
                 <tr className = 'thead'>
@@ -124,7 +141,10 @@ class SearchCollection extends Component{
                             Price:
                         </th>
                         <th>
-                            delete
+                            Instock
+                        </th>
+                        <th>
+                            Add to Cart
                         </th>
                     </tr>
                     
@@ -145,12 +165,21 @@ class SearchCollection extends Component{
                              <td key = {card.set}>    
                                 {this.props.user.admin ?
                                     <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update"/>
-                                    <button  onClick= {()=>{this.OnClickSwitch('set')}}>{card.set}</button></div>
+                                        <button  onClick= {()=>{this.OnClickSwitch('set')}}>{card.set}</button>
+                                        <button onClick ={()=>{this.handleDelete(card.id)}}>Delete</button>
+                                    </div>
                                     :
-                                    card.set}</td>   
+                                    card.set}
+                            </td>   
                             <td>price</td>
+                            <td>how many</td>
+                            <td>
+                                <button onClick = {()=>{this.addToCart(card)}}>add to cart!</button>
+                                {/* {JSON.stringify(this.props.reduxState.CartReducer)} */}
+                            </td>
 
-                             <td><button onClick ={()=>{this.handleDelete(card.id)}}>Delete</button></td>
+
+                             
                         </tr>)
                     })}
                 </tbody>

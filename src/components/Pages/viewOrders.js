@@ -45,6 +45,7 @@ class ViewOrders extends Component{
                             <td key = {order.id}>   {order.customer}</td> 
                             <td key = {order.id}>   {order.total}</td>     
                             <td key = {order.id}>   {order.sales_date}</td>   
+                            <td><button>Delete</button></td>
                         </tr>)
                     })}
                 </tbody>

@@ -64,7 +64,7 @@ class App extends Component {
             <Route path="/searchcollection" component={SearchCollection} />
             <Route path="/accountdetails" component={AccountDetails} />
             <Route path="/vieworders" component={ViewOrders} />
-            <Route path="/Checkout" component={Checkout} />
+            <Route path="/checkout" component={Checkout} />
             <Route path="/viewsignleorder" component={viewSignleOrder} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

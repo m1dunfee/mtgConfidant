@@ -73,6 +73,20 @@ router.put('/card_add',(req,res)=>{
     })
 })
 
+router.post('/add_order', (req,res)=>{
+    const data = req.body.payload
+    console.log(req.body)
+    pool.query(`insert into "all-sale-trans" ("customer", "card_id", "sales_date", "total", "paid", "active" )
+    values ($1,$2,$3,$4,$5,$6)`,[data.customer,data.card_id,data.sales_data,data.total,data.paid,data.active])
+    .then(()=>{
+        res.sendStatus(201)
+    }).catch((error)=>{
+        console.log('error in add_order',error)
+        res.sendStatus(500)
+    })
+})
+
+// add delete route for orders
 
 
 module.exports = router;
