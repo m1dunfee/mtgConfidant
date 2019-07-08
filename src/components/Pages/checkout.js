@@ -1,7 +1,7 @@
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
 
 class Checkout extends Component{
 
@@ -19,8 +19,13 @@ class Checkout extends Component{
 
     checkoutOrder=()=>{
         this.props.dispatch({
-            type: 'ORDER_ID'
+            type: 'ORDER_ID',
+            payload: {
+                cart: this.props.reduxState.CartReducer,
+                user: this.props.reduxState.user.id
+            }
         })
+        alert('Your order has been received!')
     }
        
 
@@ -66,7 +71,13 @@ class Checkout extends Component{
                     
                     
                 </table>
-                <button onClick = {this.checkoutOrder}>Check out</button>
+                <div>
+                    {this.props.reduxState.user.id?
+                    <button onClick = {this.checkoutOrder}>Check out</button>
+                    :
+                    <Link to = '/home'><button>login to continue</button></Link>
+                    }
+                </div>
             </div>
         )
     }

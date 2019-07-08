@@ -19,6 +19,22 @@ class ViewOrders extends Component{
           })
     }
     
+    deactivate=()=>{
+        console.log('deactivate needs to be built out')
+        //this function needs to get order number and toggle all with order num to false
+        Axios({
+            method: 'put',
+            url: '/localDB/deactivate',
+            data: {
+                payload:60
+            }
+
+        })
+    }
+
+    // orders should be colapsed into quantity of card_id
+
+
     render(){
         return(
             <table>
@@ -26,6 +42,9 @@ class ViewOrders extends Component{
                 <tr className = 'thead'>
                         <th>
                             order #:    
+                        </th>
+                        <th>
+                            Card Name:
                         </th>
                         <th>
                             Customer:
@@ -41,11 +60,13 @@ class ViewOrders extends Component{
                     {this.state.active_orders.map((order)=>{
                        return ( 
                             <tr key = {order.id}>  
-                            <td key = {order.id}>   {order.id}</td>   
-                            <td key = {order.id}>   {order.customer}</td> 
-                            <td key = {order.id}>   {order.total}</td>     
-                            <td key = {order.id}>   {order.sales_date}</td>   
-                            <td><button>Delete</button></td>
+                            <td key = {order.order_ID}>   {order.order_ID}</td>  
+                            <td key = {order.card_id}>   {order.card_name}</td> 
+                            <td key = {order.customer}>   {order.username}</td> 
+                            <td key = {order.total}>   {order.total}</td>     
+                            <td key = {order.sales_date}>   {order.sales_date}</td>   
+                            <td><button>Paid</button></td>
+                            <td><button onClick = {this.deactivate}>deactivate</button></td>
                         </tr>)
                     })}
                 </tbody>

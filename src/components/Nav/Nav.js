@@ -10,7 +10,7 @@ import SearchBar from '../App/SearchBar'
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/searchcollection">
+    <Link to="/checkout">
       <h2 className="nav-title">Mtg Confidant</h2>
     </Link>
     <div className="nav-right">
