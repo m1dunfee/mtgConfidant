@@ -5,6 +5,7 @@ import user from './userReducer';
 import SuggestionsReducer from './suggestionsReducer'
 import EditCard from './editCard'
 import CartReducer from './cartReducer'
+import order_ID_reducer from './order_ID_reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   SuggestionsReducer,
   EditCard,
-  CartReducer
+  CartReducer,
+  order_ID_reducer
 });
 
 export default rootReducer;

@@ -5,6 +5,10 @@ import axios from 'axios';
 
 class Checkout extends Component{
 
+    state={
+        order_ID:0
+    }
+
     removeFromCart=(id)=>{
         for(let i=0; i< this.props.reduxState.CartReducer.length; ++i){
             if(this.props.reduxState.CartReducer[i].id===id){
@@ -13,52 +17,9 @@ class Checkout extends Component{
         }
     }
 
-
-    checkoutOrder =()=>{
-        console.log('checkoutOrder clicked')
-//         const cardList =[];
-// console.log(this.props.reduxState.CartReducer)
-
-
-//         this.props.reduxState.CartReducer.forEach((card)=>{
-//             return cardList.push(card.card_name)
-//         })
-        
-//             const newObject ={
-//                 customer: this.props.reduxState.user.id,
-//                 card_id: cardList,
-//                 sales_date: null,
-//                 total: null,
-//                 paid: false ,
-//                 active: true,
-//             }
-//             console.log('newobject',newObject)
-//             return (axios({
-//                 method: 'post',
-//                 url: '/localDB/add_order',
-//                 data: {
-//                     payload: newObject
-//                 }
-//             }))
-    
-
-        this.props.reduxState.CartReducer.map((item)=>{
-            const newObject ={
-                customer: this.props.reduxState.user.id,
-                card_id: item.id,
-                sales_date: null,
-                total: null,
-                paid: false ,
-                active: true,
-            }
-            console.log('newobject',newObject)
-            return (axios({
-                method: 'post',
-                url: '/localDB/add_order',
-                data: {
-                    payload: newObject
-                }
-            }))
+    checkoutOrder=()=>{
+        this.props.dispatch({
+            type: 'ORDER_ID'
         })
     }
        

@@ -76,8 +76,8 @@ router.put('/card_add',(req,res)=>{
 router.post('/add_order', (req,res)=>{
     const data = req.body.payload
     console.log(req.body)
-    pool.query(`insert into "all-sale-trans" ("customer", "card_id", "sales_date", "total", "paid", "active" )
-    values ($1,$2,$3,$4,$5,$6)`,[data.customer,data.card_id,data.sales_data,data.total,data.paid,data.active])
+    pool.query(`insert into "all-sale-trans" ("customer", "card_id", "sales_date", "total", "paid", "active", "order_ID")
+    values ($1,$2,$3,$4,$5,$6,$7)`,[data.customer,data.card_id,data.sales_data,data.total,data.paid,data.active,data.order_ID])
     .then(()=>{
         res.sendStatus(201)
     }).catch((error)=>{
@@ -86,7 +86,18 @@ router.post('/add_order', (req,res)=>{
     })
 })
 
-// add delete route for orders
+// add delete route for orders aka deactivate
+
+router.get('/order_IDs', (req, res) => {
+    pool.query(`INSERT INTO "public"."order_IDs" VALUES(DEFAULT) RETURNING "id";`)
+    .then((result)=>{
+        console.log(result.rows)
+        res.send(result.rows)
+    }).catch((error)=>{
+        console.log('error in /get_order_IDs',error)
+        res.sendStatus(500)
+    })
+});
 
 
 module.exports = router;
