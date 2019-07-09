@@ -5,7 +5,6 @@ const pool = require('../modules/pool.js');
 
 
 router.get('/active_orders', (req, res) => {
-    // YOUR CODE HERE
     pool.query(`
     select "all-sale-trans"."order_ID","all-sale-trans"."total","all-sale-trans"."sales_date", "physical_cards"."card_name", "user"."username" from "all-sale-trans" 
     join "physical_cards" on "all-sale-trans"."card_id" = "physical_cards"."id"
@@ -60,6 +59,17 @@ router.put('/card_update_name', (req, res) => {
 router.put('/card_update_set', (req, res) => {
     
     pool.query(`update "physical_cards" set "set" = $1 where "id" = $2;`,[req.body.payload1,req.body.payload2])
+    .then(()=>{
+        res.sendStatus(200)
+    }).catch((error)=>{
+        console.log('error in /get',error)
+        res.sendStatus(500)
+    })
+});
+//working on update stock
+router.put('/card_update_in_stock', (req, res) => {
+    
+    pool.query(`update "physical_cards" set "in_stock" = $1 where "id" = $2;`,[req.body.payload1,req.body.payload2])
     .then(()=>{
         res.sendStatus(200)
     }).catch((error)=>{

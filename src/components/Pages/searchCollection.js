@@ -7,7 +7,8 @@ class SearchCollection extends Component{
     state = {
         card: '',
         newCardName: '',
-        newCardSet: ''
+        newCardSet: '',
+        NewCardIn_stock: ''
     }
     
     OnClickSwitch = (method) =>{
@@ -35,11 +36,30 @@ class SearchCollection extends Component{
                         } 
                 })
                 break;
+// working on in_stock
+            case 'set':
+                console.log(method)
+                axios({
+                    method: 'in_stock',
+                    url: '/localDB/card_update_in_stock/',
+                    data: {
+                        payload1: this.props.NewCardIn_stock,
+                        payload2: this.state.card
+                        } 
+                })
+                break;
     
             case 'price':
                 console.log(method)
                 break;
         }
+    }
+
+    onChangeIn_stock=(event, id)=>{
+        this.setState({
+            NewCardIn_stock: event.target.value,
+            card: id
+        })
     }
 
     onChange=(event, id)=>{
@@ -153,26 +173,41 @@ class SearchCollection extends Component{
                          <tr key = {card.id}>  
                             <td key = {card.img_path}>  
                               {/* {JSON.stringify(this.props.EditCard)} */}
+        {/* card name */}
                                </td> 
                             <td key = {card.card_name}>    
                             {this.props.user.admin ?
-                                <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update"/>
+                                <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update name"/>
                                 <button onClick= {()=>{this.OnClickSwitch('name')}}>{card.card_name}</button></div>
                                 :
                                 card.card_name}</td>  
 
-                            {/* this is the most up to date tree */}
+        {/* card set */}
                              <td key = {card.set}>    
                                 {this.props.user.admin ?
-                                    <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update"/>
+                                    <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update set"/>
                                         <button  onClick= {()=>{this.OnClickSwitch('set')}}>{card.set}</button>
                                         <button onClick ={()=>{this.handleDelete(card.id)}}>Delete</button>
                                     </div>
                                     :
                                     card.set}
                             </td>   
-                            <td>price</td>
-                            <td>how many</td>
+        {/*card price  */}
+                            <td>
+
+                            </td>
+        {/* card quantity */}
+                            <td key = {card.in_stock}>
+                            {this.props.user.admin ?
+                                    <div> 
+                                        <input onChange={(e)=>{this.onChangeIn_stock(e,card.id)}} placeholder = "Update in-stock"/>
+                                        <button  onClick= {()=>{this.OnClickSwitch('in_stock')}}>{card.in_stock}</button>
+                                    </div>
+                                    :
+                                    card.in_stock}
+                            </td>
+
+        {/* add to cart */}
                             <td>
                                 <button onClick = {()=>{this.addToCart(card)}}>add to cart!</button>
                                 {/* {JSON.stringify(this.props.reduxState.CartReducer)} */}

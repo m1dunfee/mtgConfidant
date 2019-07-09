@@ -8,6 +8,10 @@ class ViewOrders extends Component{
         active_orders: []
     }
     componentDidMount(){
+       this.getOrderList()
+    }
+    
+    getOrderList = ()=>{
         Axios({
             method: 'get',
             url: '/localDB/active_orders',
@@ -18,21 +22,21 @@ class ViewOrders extends Component{
             })
           })
     }
-    
-    deactivate=()=>{
+
+    deactivate=(id)=>{
+        //should add a alert for deactivation
         console.log('deactivate needs to be built out')
-        //this function needs to get order number and toggle all with order num to false
         Axios({
             method: 'put',
             url: '/localDB/deactivate',
             data: {
-                payload:60
+                payload:id
             }
-
+        }).then((response)=>{
+            console.log(response)
         })
+        this.getOrderList()
     }
-
-    // orders should be colapsed into quantity of card_id
 
 
     render(){
@@ -66,7 +70,7 @@ class ViewOrders extends Component{
                             <td key = {order.total}>   {order.total}</td>     
                             <td key = {order.sales_date}>   {order.sales_date}</td>   
                             <td><button>Paid</button></td>
-                            <td><button onClick = {this.deactivate}>deactivate</button></td>
+                            <td><button onClick = {()=>{this.deactivate(order.order_ID)}}>deactivate</button></td>
                         </tr>)
                     })}
                 </tbody>
