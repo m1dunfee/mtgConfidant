@@ -11,51 +11,27 @@ class SearchCollection extends Component{
         NewCardIn_stock: ''
     }
     
-    OnClickSwitch = (method) =>{
-        switch (method) {
-            case 'name':
-                console.log(method)
-                axios({
-                    method: 'put',
-                    url: '/localDB/card_update_name/',
-                    data: {
-                        payload1: this.props.EditCard,
-                        payload2: this.state.card
-                        } 
-                })
-                break;
-        
-            case 'set':
-                console.log(method)
-                axios({
-                    method: 'put',
-                    url: '/localDB/card_update_set/',
-                    data: {
-                        payload1: this.props.EditCard,
-                        payload2: this.state.card
-                        } 
-                })
-                break;
-// working on in_stock
-            case 'set':
-                console.log(method)
-                axios({
-                    method: 'in_stock',
-                    url: '/localDB/card_update_in_stock/',
-                    data: {
-                        payload1: this.props.NewCardIn_stock,
-                        payload2: this.state.card
-                        } 
-                })
-                break;
-    
-            case 'price':
-                console.log(method)
-                break;
-        }
+    onClick = () =>{
+        console.log('new cark instock',this.state.NewCardIn_stock)
+        console.log('card',this.state.card)
+        axios({
+            method: 'put',
+            url: '/localDB/card_update_in_stock/',
+            data: {
+                payload1: this.state.NewCardIn_stock,
+                payload2: this.state.card
+                } 
+        })
+  
+        this.props.dispatch({
+            type: 'SearchBar',
+            payload: this.props.reduxState.SearchBarReducer.SearchBarValue
+        }) 
+                
     }
 
     onChangeIn_stock=(event, id)=>{
+        // this.props.dispatch({type:'SearchBar', payload:this.props.reduxState.SearchBarReducer.SearchBarValue})
         this.setState({
             NewCardIn_stock: event.target.value,
             card: id
@@ -107,19 +83,6 @@ class SearchCollection extends Component{
         })
     }
 
-    createCardChangeSet=(event)=>{
-        console.log(event.target.value)
-        this.setState({
-            newCardSet: event.target.value
-        })
-    }
-
-    createCardChangeName=(event)=>{
-        console.log(event.target.value)
-        this.setState({
-            newCardName: event.target.value
-        })
-    }
 
     addToCart=(card)=>{
         console.log('add to cart',card)
@@ -134,6 +97,7 @@ class SearchCollection extends Component{
         return(
             <div>
                 {/* {JSON.stringify(this.props.user)} */}
+                {/* {JSON.stringify(this.state)} */}
                 {this.props.user.admin ? 
                 <div>
                 <input placeholder = "name" onChange={this.createCardChangeName}/>
@@ -168,7 +132,8 @@ class SearchCollection extends Component{
                         </th>
                     </tr>
                     
-                    {this.props.reduxState.SuggestionsReducer.map((card)=>{
+                    {/* not sure how  SearchBarReducer.SearchBarSuggestions is working when it should be working with SuggestionsReducer*/}
+                    {this.props.reduxState.SearchBarReducer.SearchBarSuggestions.map((card)=>{
                        return ( 
                          <tr key = {card.id}>  
                             <td key = {card.img_path}>  
@@ -176,21 +141,11 @@ class SearchCollection extends Component{
         {/* card name */}
                                </td> 
                             <td key = {card.card_name}>    
-                            {this.props.user.admin ?
-                                <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update name"/>
-                                <button onClick= {()=>{this.OnClickSwitch('name')}}>{card.card_name}</button></div>
-                                :
-                                card.card_name}</td>  
+                            {card.card_name}</td>  
 
         {/* card set */}
                              <td key = {card.set}>    
-                                {this.props.user.admin ?
-                                    <div> <input onChange={(e)=>{this.onChange(e,card.id)}} placeholder = "Update set"/>
-                                        <button  onClick= {()=>{this.OnClickSwitch('set')}}>{card.set}</button>
-                                        <button onClick ={()=>{this.handleDelete(card.id)}}>Delete</button>
-                                    </div>
-                                    :
-                                    card.set}
+                                {   card.set}
                             </td>   
         {/*card price  */}
                             <td>
@@ -201,7 +156,7 @@ class SearchCollection extends Component{
                             {this.props.user.admin ?
                                     <div> 
                                         <input onChange={(e)=>{this.onChangeIn_stock(e,card.id)}} placeholder = "Update in-stock"/>
-                                        <button  onClick= {()=>{this.OnClickSwitch('in_stock')}}>{card.in_stock}</button>
+                                        <button  onClick= {()=>{this.onClick('in_stock')}}>{card.in_stock}</button>
                                     </div>
                                     :
                                     card.in_stock}

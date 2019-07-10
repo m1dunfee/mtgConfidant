@@ -6,6 +6,7 @@ import SuggestionsReducer from './suggestionsReducer'
 import EditCard from './editCard'
 import CartReducer from './cartReducer'
 import order_ID_reducer from './order_ID_reducer'
+import SearchBarReducer from './SearchBarReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   SuggestionsReducer,
   EditCard,
   CartReducer,
-  order_ID_reducer
+  order_ID_reducer,
+  SearchBarReducer,
 });
 
 export default rootReducer;

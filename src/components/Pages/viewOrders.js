@@ -38,6 +38,21 @@ class ViewOrders extends Component{
         this.getOrderList()
     }
 
+    paid=(id)=>{
+        //should add a alert for deactivation
+        console.log('Paid needs to be built out', id)
+        // Axios({
+        //     method: 'put',
+        //     url: '/localDB/deactivate',
+        //     data: {
+        //         payload:id
+        //     }
+        // }).then((response)=>{
+        //     console.log(response)
+        // })
+        // this.getOrderList()
+    }
+
 
     render(){
         return(
@@ -69,7 +84,7 @@ class ViewOrders extends Component{
                             <td key = {order.customer}>   {order.username}</td> 
                             <td key = {order.total}>   {order.total}</td>     
                             <td key = {order.sales_date}>   {order.sales_date}</td>   
-                            <td><button>Paid</button></td>
+                            <td><button onClick = {()=>{this.paid(order.order_ID)}}>Paid</button></td>
                             <td><button onClick = {()=>{this.deactivate(order.order_ID)}}>deactivate</button></td>
                         </tr>)
                     })}

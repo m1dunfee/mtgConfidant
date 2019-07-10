@@ -46,26 +46,6 @@ router.post('/add_order', (req,res)=>{
 })
 
 //  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! card edit page!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-router.put('/card_update_name', (req, res) => {
-    console.log(req.body.payload1)
-    pool.query(`update "physical_cards" set "card_name" = $1 where "id" = $2;`,[req.body.payload1,req.body.payload2])
-    .then(()=>{
-        res.sendStatus(200)
-    }).catch((error)=>{
-        console.log('error in /get',error)
-        res.sendStatus(500)
-    })
-});
-router.put('/card_update_set', (req, res) => {
-    
-    pool.query(`update "physical_cards" set "set" = $1 where "id" = $2;`,[req.body.payload1,req.body.payload2])
-    .then(()=>{
-        res.sendStatus(200)
-    }).catch((error)=>{
-        console.log('error in /get',error)
-        res.sendStatus(500)
-    })
-});
 //working on update stock
 router.put('/card_update_in_stock', (req, res) => {
     
