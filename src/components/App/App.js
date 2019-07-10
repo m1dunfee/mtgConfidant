@@ -21,6 +21,7 @@ import viewSignleOrder from '../Pages/viewSignleOrder';
 import Checkout from '../Pages/checkout';
 import ViewOrders from '../Pages/viewOrders'
 import AccountDetails from '../Pages/accountDetails'
+import SideBar from './sideBar/sideBar'
 
 import './App.css';
 
@@ -62,13 +63,14 @@ class App extends Component {
               component={InfoPage}
             />
             <Route path="/searchcollection" component={SearchCollection} />
-            <Route path="/accountdetails" component={AccountDetails} />
-            <Route path="/vieworders" component={ViewOrders} />
+            <ProtectedRoute path="/accountdetails" component={AccountDetails} />
+            <ProtectedRoute admin={true} path="/vieworders" component={ViewOrders} />
             <Route path="/checkout" component={Checkout} />
-            <Route path="/viewsignleorder" component={viewSignleOrder} />
+            <ProtectedRoute path="/viewsignleorder" component={viewSignleOrder} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
+          {/* <SideBar/> */}
           <Footer />
         </div>
 

@@ -22,12 +22,17 @@ const ProtectedRoute = (props) => {
     component: ComponentToProtect,
     user,
     loginMode,
+    admin,
     ...otherProps
   } = props;
 
   let ComponentToShow;
 
-  if(user.id) {
+  if(admin === true){
+    if(user.admin === true){
+      ComponentToShow = ComponentToProtect;
+    } 
+  } else if(user.id) {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;

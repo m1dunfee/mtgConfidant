@@ -109,7 +109,7 @@ class SearchCollection extends Component{
                 }
             
 
-            <table>
+            <table className = 'card'>
                 <tbody>
                 <tr className = 'thead'>
                         <th>

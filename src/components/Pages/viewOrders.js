@@ -1,5 +1,5 @@
 import React, {Component} from 'react'; 
-import Axios from 'axios';
+import axios from 'axios';
 
 
 class ViewOrders extends Component{
@@ -12,7 +12,7 @@ class ViewOrders extends Component{
     }
     
     getOrderList = ()=>{
-        Axios({
+        axios({
             method: 'get',
             url: '/localDB/active_orders',
             params:{string: this.state.value}
@@ -26,7 +26,7 @@ class ViewOrders extends Component{
     deactivate=(id)=>{
         //should add a alert for deactivation
         console.log('deactivate needs to be built out')
-        Axios({
+        axios({
             method: 'put',
             url: '/localDB/deactivate',
             data: {
@@ -38,25 +38,11 @@ class ViewOrders extends Component{
         this.getOrderList()
     }
 
-    paid=(id)=>{
-        //should add a alert for deactivation
-        console.log('Paid needs to be built out', id)
-        // Axios({
-        //     method: 'put',
-        //     url: '/localDB/deactivate',
-        //     data: {
-        //         payload:id
-        //     }
-        // }).then((response)=>{
-        //     console.log(response)
-        // })
-        // this.getOrderList()
-    }
 
 
     render(){
         return(
-            <table>
+            <table className = 'card'>
                 <tbody>
                 <tr className = 'thead'>
                         <th>
@@ -78,13 +64,13 @@ class ViewOrders extends Component{
                     
                     {this.state.active_orders.map((order)=>{
                        return ( 
+                            
                             <tr key = {order.id}>  
                             <td key = {order.order_ID}>   {order.order_ID}</td>  
                             <td key = {order.card_id}>   {order.card_name}</td> 
                             <td key = {order.customer}>   {order.username}</td> 
                             <td key = {order.total}>   {order.total}</td>     
                             <td key = {order.sales_date}>   {order.sales_date}</td>   
-                            <td><button onClick = {()=>{this.paid(order.order_ID)}}>Paid</button></td>
                             <td><button onClick = {()=>{this.deactivate(order.order_ID)}}>deactivate</button></td>
                         </tr>)
                     })}

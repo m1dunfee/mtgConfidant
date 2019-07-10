@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import '../App/App.css'
 
 class Checkout extends Component{
 
@@ -33,7 +34,7 @@ class Checkout extends Component{
     render(){
         return(
             <div>
-                <table>
+                <table className = 'card'>
                     <tr>
                         <th>
                             Name:
