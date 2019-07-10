@@ -32,6 +32,7 @@ router.get('/autoFill', (req, res) => {
     })
 });
 
+// think the error is in here with the paid column being deleted
 router.post('/add_order', (req,res)=>{
     const data = req.body.payload
     console.log(req.body)

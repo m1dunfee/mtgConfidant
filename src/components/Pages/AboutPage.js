@@ -8,7 +8,7 @@ import React from 'react';
 const AboutPage = () => (
   <div>
     <div>
-      <p>
+      <p className = 'card'>
         My name is Dylan and I'm a 29 year old from Minneapolis, Minnesota. I've been Play Magic for about the 
         last 15 years and during that time I've become fully immersed in the Twin Cities community and 
         accumulated quite the collection. I've decided that now it's tome to sell some of it and that's

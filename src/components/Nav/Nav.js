@@ -23,7 +23,8 @@ const Nav = (props) => (
         {props.user.id ? 'accountdetails' : 'Login / Register'}</Link>
 
       {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (<><Link className="nav-link" to="/info">Info Page</Link>   <LogOutButton className="nav-link"/></>)}
+      {props.user.id && (<>  <LogOutButton className="nav-link"/></>)}
+      {/* <Link className="nav-link" to="/info">Info Page</Link>  */}
       
       {props.user.id && props.user.admin && (<Link className="nav-link" to = "/vieworders">View Orders</Link>)}
       {/* <span>{JSON.stringify(props.users)}</span> */}
