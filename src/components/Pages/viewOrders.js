@@ -58,7 +58,8 @@ class ViewOrders extends Component{
                             Total:
                         </th>
                         <th>
-                            Date:
+                            Qauntity
+                            {/* {JSON.stringify(this.state.active_orders)} */}
                         </th>
                     </tr>
                     
@@ -66,11 +67,11 @@ class ViewOrders extends Component{
                        return ( 
                             
                             <tr key = {order.id}>  
-                            <td key = {order.order_ID}>   {order.order_ID}</td>  
-                            <td key = {order.card_id}>   {order.card_name}</td> 
-                            <td key = {order.customer}>   {order.username}</td> 
-                            <td key = {order.total}>   {order.total}</td>     
-                            <td key = {order.sales_date}>   {order.sales_date}</td>   
+                            <td key = {order.order_ID}>     {order.order_ID}</td>  
+                            <td key = {order.card_id}>      {order.card_name}</td> 
+                            <td key = {order.customer}>     {order.username}</td> 
+                            <td key = {order.total}>        {order.total}</td>     
+                            <td key = {order.quantity}>     {order.quantity}</td>   
                             <td><button onClick = {()=>{this.deactivate(order.order_ID)}}>deactivate</button></td>
                         </tr>)
                     })}

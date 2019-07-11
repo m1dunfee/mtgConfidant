@@ -6,7 +6,7 @@ const pool = require('../modules/pool.js');
 
 router.get('/active_orders', (req, res) => {
     pool.query(`
-    select "all-sale-trans"."order_ID","all-sale-trans"."total","all-sale-trans"."sales_date", "physical_cards"."card_name", "user"."username" from "all-sale-trans" 
+    select "all-sale-trans"."order_ID","all-sale-trans"."total","all-sale-trans"."quantity", "physical_cards"."card_name", "user"."username" from "all-sale-trans" 
     join "physical_cards" on "all-sale-trans"."card_id" = "physical_cards"."id"
     join "user" on "all-sale-trans"."customer" = "user"."id"
     where "active" = true;`)
@@ -32,12 +32,11 @@ router.get('/autoFill', (req, res) => {
     })
 });
 
-// think the error is in here with the paid column being deleted
 router.post('/add_order', (req,res)=>{
     const data = req.body.payload
     console.log(req.body)
-    pool.query(`insert into "all-sale-trans" ("customer", "card_id", "sales_date", "total", "paid", "active", "order_ID")
-    values ($1,$2,$3,$4,$5,$6,$7)`,[data.customer,data.card_id,data.sales_data,data.total,data.paid,data.active,data.order_ID])
+    pool.query(`insert into "all-sale-trans" ("customer", "card_id", "sales_date", "total", "active", "order_ID", "quantity")
+    values ($1,$2,$3,$4,$5,$6,$7)`,[data.customer,data.card_id,data.sales_data,data.total,data.active,data.order_ID, data.quantity])
     .then(()=>{
         res.sendStatus(201)
     }).catch((error)=>{

@@ -125,10 +125,10 @@ class SearchCollection extends Component{
                             Price:
                         </th>
                         <th>
-                            Instock
+                            Instock:
                         </th>
                         <th>
-                            Add to Cart
+                            Add to Cart:
                         </th>
                     </tr>
                     

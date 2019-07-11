@@ -16,7 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import AboutPage from '../Pages/AboutPage';
 import UserPage from '../Pages/UserPage';
 import InfoPage from '../Pages/InfoPage';
-import SearchCollection from '../Pages/searchCollection';
+import SearchCollection from '../Pages/SearchCollection/searchCollection';
 import viewSignleOrder from '../Pages/viewSignleOrder';
 import Checkout from '../Pages/checkout';
 import ViewOrders from '../Pages/viewOrders'

@@ -17,9 +17,10 @@ yield
                 card_id: item.id,
                 sales_date: null,
                 total: null,
-                paid: false ,
                 active: true,
                 order_ID: response.data[0].id,
+                // added quantitiy
+                quantity: response.data[0].quantity ,
             }
             console.log('newobject',newObject)
             return (axios({
