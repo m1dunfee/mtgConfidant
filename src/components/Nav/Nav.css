@@ -3,6 +3,7 @@
     font-weight: 700;
     display: inline-block;
     color: black; 
+    background-color: orange;
     padding-left: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -12,10 +13,8 @@
 .nav {
   overflow: hidden;
   background-color: blue;
-  /* position: absolute;
-  top: 0px;
-  WIDTH: 100% */
-  /* right: 0px; */
+  background-size: cover;
+  background-image: url(https://i.pinimg.com/originals/ab/8b/29/ab8b29d163462214b27b18bafbc77f97.jpg);
 }
 
 .nav-link {

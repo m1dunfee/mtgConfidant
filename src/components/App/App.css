@@ -67,3 +67,40 @@ table{
     transition: 0.3s;
     border-radius: 5px; /* 5px rounded corners */
   }
+.mainContainer{
+    width:80%;
+    position:relative;
+    display:block;
+    left:0px;
+    top:0px;
+}
+.cartSidebar{
+    position:fixed;
+    overflow-y:scroll;
+    right:0px;
+    top:0px;
+    height:100vh;
+    width:20%;
+    background-color:#f3f3f3;
+    text-align: center;
+    background-image: url(http://media.wizards.com/2015/images/daily/ARC20151005_Plains_Final.jpg);
+    background-size: cover;
+    /* background-position-x:  0%; */
+    background-attachment: fixed;
+}
+
+.cart{
+    font-size: 12px;
+    color: white;
+
+    margin: auto;
+    padding-top: 15px; 
+    padding-bottom: 15px; 
+    width: 90%;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+
+    
+}

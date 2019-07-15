@@ -45,6 +45,9 @@ class Checkout extends Component{
                             Price:
                         </th>
                         <th>
+                            Quantity
+                        </th>
+                        <th>
                             Remove
                         </th>
                     </tr>
@@ -61,6 +64,9 @@ class Checkout extends Component{
                             </td>
                             <td>
                                 {/* {card.price} */}
+                            </td>
+                            <td>
+                                {card.quantity}
                             </td>
                             <td>
                                 {/* needs to be corrected */}

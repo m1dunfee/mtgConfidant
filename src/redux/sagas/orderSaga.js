@@ -20,7 +20,7 @@ yield
                 active: true,
                 order_ID: response.data[0].id,
                 // added quantitiy
-                quantity: response.data[0].quantity ,
+                quantity: item.quantity ,
             }
             console.log('newobject',newObject)
             return (axios({

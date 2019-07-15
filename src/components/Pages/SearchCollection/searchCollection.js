@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; 
 import {connect} from 'react-redux';
 import axios from 'axios';
+import CardDetails from './CardDetails'
 
 
 class SearchCollection extends Component{
@@ -92,6 +93,17 @@ class SearchCollection extends Component{
         })
     }
 
+    createCardChangeName=(event)=>{
+        this.setState({
+            newCardName: event.target.value
+        })
+    }
+
+    createCardChangeSet=(event)=>{
+        this.setState({
+            newCardSet: event.target.value
+        })
+    }
 
     render(){
         return(
@@ -110,10 +122,10 @@ class SearchCollection extends Component{
             
 
             <table className = 'card'>
-                <tbody>
+                <thead>
                 <tr className = 'thead'>
                         <th>
-                            IMG:    
+                            {/* IMG:     */}
                         </th>
                         <th>
                             Name:
@@ -127,52 +139,21 @@ class SearchCollection extends Component{
                         <th>
                             Instock:
                         </th>
+                        {/* <th>
+                            Quantity:
+                        </th> */}
                         <th>
                             Add to Cart:
                         </th>
-                    </tr>
-                    
-                    {/* not sure how  SearchBarReducer.SearchBarSuggestions is working when it should be working with SuggestionsReducer*/}
-                    {this.props.reduxState.SearchBarReducer.SearchBarSuggestions.map((card)=>{
+                    </tr>                    
+               </thead>
+               <tbody>
+            
+            {this.props.reduxState.SearchBarReducer.SearchBarSuggestions.map((card)=>{
                        return ( 
-                         <tr key = {card.id}>  
-                            <td key = {card.img_path}>  
-                              {/* {JSON.stringify(this.props.EditCard)} */}
-        {/* card name */}
-                               </td> 
-                            <td key = {card.card_name}>    
-                            {card.card_name}</td>  
-
-        {/* card set */}
-                             <td key = {card.set}>    
-                                {   card.set}
-                            </td>   
-        {/*card price  */}
-                            <td>
-
-                            </td>
-        {/* card quantity */}
-                            <td key = {card.in_stock}>
-                            {this.props.user.admin ?
-                                    <div> 
-                                        <input onChange={(e)=>{this.onChangeIn_stock(e,card.id)}} placeholder = "Update in-stock"/>
-                                        <button  onClick= {()=>{this.onClick('in_stock')}}>{card.in_stock}</button>
-                                    </div>
-                                    :
-                                    card.in_stock}
-                            </td>
-
-        {/* add to cart */}
-                            <td>
-                                <button onClick = {()=>{this.addToCart(card)}}>add to cart!</button>
-                                {/* {JSON.stringify(this.props.reduxState.CartReducer)} */}
-                            </td>
-
-
-                             
-                        </tr>)
-                    })}
-                </tbody>
+            <CardDetails card = {card}/>
+            )})}
+             </tbody>
             </table>
             </div>
         )
